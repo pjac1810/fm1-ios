@@ -1,0 +1,4 @@
+module FM1Engine {
+    header "fm1ios.h"
+    export *
+}

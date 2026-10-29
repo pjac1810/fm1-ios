@@ -1,0 +1,13 @@
+[package]
+name = "fm1-ios"
+description = "FM-1 emulator host for iOS: an emulation thread, a lock-free audio ring, a C API for Swift"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["staticlib", "rlib"]
+
+[dependencies]
+fm1-web = { path = "../fm1-web" }
+fm1-soc = { path = "../fm1-soc" }

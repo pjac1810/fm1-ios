@@ -1,0 +1,96 @@
+# XcodeGen description of the FM-1 app: `xcodegen` in this folder writes FM1.xcodeproj.
+name: FM1
+options:
+  bundleIdPrefix: io.github.pjac1810
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  FM1:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Resources/Firmware
+        type: folder
+        buildPhase: resources
+      - path: Resources/Licenses
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - framework: Frameworks/FM1Engine.xcframework
+        embed: false
+      - sdk: AVFoundation.framework
+      - sdk: CoreMIDI.framework
+      - sdk: CoreAudioKit.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.pjac1810.fm1
+        PRODUCT_NAME: FM-1
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Sources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        CODE_SIGN_STYLE: Automatic
+        # set your Apple team here or in Xcode (Signing & Capabilities)
+        DEVELOPMENT_TEAM: ""
+        ENABLE_BITCODE: NO
+        DEAD_CODE_STRIPPING: YES
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: FM-1
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        UILaunchScreen:
+          UIColorName: ""
+        UIRequiresFullScreen: true
+        UIStatusBarHidden: true
+        UIViewControllerBasedStatusBarAppearance: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIBackgroundModes:
+          - audio
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: false
+        ITSAppUsesNonExemptEncryption: false
+        NSBluetoothAlwaysUsageDescription: Le FM-1 se connecte aux claviers MIDI Bluetooth que vous choisissez.
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: com.m-vave.fwsc
+            UTTypeDescription: Mise à jour de firmware FM-1
+            UTTypeConformsTo: [public.data]
+            UTTypeTagSpecification:
+              public.filename-extension: [fwsc]
+          - UTTypeIdentifier: com.yamaha.dx7.syx
+            UTTypeDescription: Banque SysEx DX7
+            UTTypeConformsTo: [public.data]
+            UTTypeTagSpecification:
+              public.filename-extension: [syx]
+          - UTTypeIdentifier: com.fm1-emu.fm1save
+            UTTypeDescription: Sauvegarde FM-1
+            UTTypeConformsTo: [public.json]
+            UTTypeTagSpecification:
+              public.filename-extension: [fm1save]
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Mise à jour de firmware FM-1
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Owner
+            LSItemContentTypes: [com.m-vave.fwsc]
+          - CFBundleTypeName: Banque SysEx DX7
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [com.yamaha.dx7.syx]
+          - CFBundleTypeName: Sauvegarde FM-1
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Owner
+            LSItemContentTypes: [com.fm1-emu.fm1save]

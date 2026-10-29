@@ -1,0 +1,6 @@
+emu/target/
+App/Frameworks/
+App/FM1.xcodeproj/
+App/Sources/Info.plist
+.DS_Store
+xcuserdata/

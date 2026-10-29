@@ -1,0 +1,22 @@
+# FM1-iOS: the engine crates of fm1-emu (https://github.com/joakimeriksson/fm1-emu, MIT,
+# commit 93cb7ee3f7008b27959ba73073b864e37efd7289) plus fm1-ios, the static library the app links.
+[workspace]
+resolver = "2"
+members = [
+    "crates/fm1-isa",
+    "crates/fm1-core",
+    "crates/fm1-soc",
+    "crates/fm1-web",
+    "crates/fm1-ios",
+]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
